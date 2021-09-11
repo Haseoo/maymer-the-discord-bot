@@ -1,0 +1,27 @@
+spring:
+  rabbitmq:
+    host: ${RABBIT_HOST}
+    port: ${RABBIT_PORT}
+    username: ${RABBIT_USERNAME}
+    password: ${RABBIT_PASSWORD}
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+redis:
+  redisMemeUri: redis://localhost:6379
+  redisImgUri: redis://localhost:6380
+env:
+  botToken: ${BOT_TOKEN}
+  maymerUrl: ${MAYMER_URL}
+  maymerLinkUrl: ${MAYMER_LINK_URL}
+  statusApiUrl: ${STATUS_API_URL}
+  dscViewerUrl: ${DSC_VIEWER_URL}
+  dscViewerRedirectUrl: ${DSC_VIEWER_REDIRECT_URL}
+  domain: ${DOMAIN}
+  prod: ${TOMCAT_PROD:false}
+  earwigSecret: ${EARWIG_SECRET}
+  earwigSecretEmoteName: ${EARWIG_SECRET_EMOTE_NAME}
+  messageDeletionTimeout: ${MESSAGE_DELETION_TIMEOUT:15}
+  rabbitImageQueue: ${IMAGE_QUEUE_NAME}
+  serverId: ${SERVER_ID}

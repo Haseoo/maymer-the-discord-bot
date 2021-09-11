@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "redis.redisMemeUri",
+      "type": "java.lang.String",
+      "description": "URI for Redis meme storage."
+    },
+    {
+      "name": "redis.redisImgUri",
+      "type": "java.lang.String",
+      "description": "URI for Redis token storage."
+    }
+  ]
+}
