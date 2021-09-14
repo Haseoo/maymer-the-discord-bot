@@ -48,8 +48,8 @@ public class ImageStoreService {
 
     public void updateChannelName(long channelId, String newName) {
         try {
-            var url = env.getDscViewerUrl() + "/api/channel" + channelId;
-            restTemplate.patchForObject(url, new ChannelRequest(newName), Object.class);
+            var url = env.getDscViewerUrl() + "/api/channel/" + channelId;
+            restTemplate.postForObject(url, new ChannelRequest(newName), Object.class);
         } catch (Exception e) {
             log.error("Update channel name", e);
         }
@@ -57,7 +57,7 @@ public class ImageStoreService {
 
     public void deleteChannel(long channelId) {
         try {
-            var url = env.getDscViewerUrl() + "/api/channel" + channelId;
+            var url = env.getDscViewerUrl() + "/api/channel/" + channelId;
             restTemplate.delete(url);
         } catch (Exception e) {
             log.error("Update channel name", e);
