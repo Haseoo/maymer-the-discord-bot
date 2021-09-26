@@ -30,8 +30,7 @@ public class MemeRepository {
         if (memeUrl == null) {
             return Optional.empty();
         }
-        int count = Integer.parseInt(jedis.hget(id, COUNT_FIELD_NAME)) + 1;
-        jedis.hset(id, COUNT_FIELD_NAME, Integer.toString(count));
+        jedis.hincrBy(id, COUNT_FIELD_NAME, 1);
         return Optional.of(memeUrl);
     }
 
