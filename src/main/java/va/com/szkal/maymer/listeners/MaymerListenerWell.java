@@ -27,7 +27,7 @@ public class MaymerListenerWell extends ListenerAdapter {
         if (content.contains("well")) {
             message.reply("ness").queue();
         }
-        if(content.contains("weIl") || content.contains("weII") || content.contains("welI")) {
+        if(content.contains("weil") || content.contains("weii") || content.contains("weli")) {
             message.reply("clever!").queue();
         }
     }
