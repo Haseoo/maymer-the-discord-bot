@@ -7,7 +7,9 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class MaymerListenerWell extends ListenerAdapter {
@@ -17,10 +19,16 @@ public class MaymerListenerWell extends ListenerAdapter {
         if (event.getAuthor().isBot()) {
             return;
         }
+        if(event.getMessage().getContentRaw().equals("!maymer well")) {
+            return;
+        }
         Message message = event.getMessage();
-        String[] content = message.getContentRaw().toLowerCase().split(" ");
-        if (Arrays.asList(content).contains("well")) {
+        List<String> content = Arrays.asList(message.getContentRaw().toLowerCase().split(" "));
+        if (content.contains("well")) {
             message.reply("ness").queue();
+        }
+        if(content.contains("weIl") || content.contains("weII") || content.contains("welI")) {
+            message.reply("clever!").queue();
         }
     }
 }
