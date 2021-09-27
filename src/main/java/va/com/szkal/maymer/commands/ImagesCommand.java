@@ -20,7 +20,7 @@ final class ImagesCommand implements MaymerCommand {
     }
 
     private void sendAccessUrl(PrivateChannel privateChannel, Guild server) {
-        privateChannel.sendMessageFormat("To jest Twój jednorazowy link <%s> \n wygaśnie za %s minut!",
+        privateChannel.sendMessageFormat("This is your single-use like <%s> \n it will expire in %s minutes!",
                 imageStoreService.generateLink(server), ImageStoreService.LINK_ID_EXPIRE_MINUTES).queue();
     }
 }
