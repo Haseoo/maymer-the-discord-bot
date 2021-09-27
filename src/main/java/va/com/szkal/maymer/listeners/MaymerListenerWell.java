@@ -28,7 +28,7 @@ public class MaymerListenerWell extends ListenerAdapter {
             message.reply("ness").queue();
         }
         if(content.contains("weil") || content.contains("weii") || content.contains("weli")) {
-            message.reply("clever!").queue();
+            message.reply("https://i.imgflip.com/3luevu.png").queue();
         }
     }
 }
