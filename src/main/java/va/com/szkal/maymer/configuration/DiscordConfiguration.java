@@ -36,7 +36,7 @@ public class DiscordConfiguration {
                 new MaymerImagesListener(imageStoreService));
         jda.addEventListener();
         jda.getPresence().setActivity(env.isProd() ?
-                Activity.playing("Your mom") : Activity.watching("prace programistyczne"));
+                Activity.playing("Your mom") : Activity.watching("in development"));
     }
 
     @EventListener(ContextClosedEvent.class)

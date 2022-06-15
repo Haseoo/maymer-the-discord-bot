@@ -121,6 +121,6 @@ public class MemeRepository {
     }
 
     private String prepareId(long serverId, String memeName) {
-        return String.format("%s#%s", serverId, memeName);
+        return String.format("%s#%s", serverId, memeName.toLowerCase());
     }
 }

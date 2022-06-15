@@ -26,6 +26,7 @@ public class ImageController {
             cookie.setPath("/");
             cookie.setDomain(env.getDomain());
             cookie.setMaxAge(ImageStoreService.TOKEN_EXPIRATION);
+            cookie.setSecure(true);
             response.addCookie(cookie);
             imageStoreService.deleteToken(id);
             return "redirect:" + env.getDscViewerRedirectUrl() + "/";

@@ -26,6 +26,6 @@ final class MinecraftCommand extends DeletableMessageCommand {
         }
         return minecraftRestDao.getServerStatus()
                 .map(MinecraftServerInfoDto::toString)
-                .orElse("Serwer statusu szlag trafił");
+                .orElse("Minecraft server status service ded :(");
     }
 }
