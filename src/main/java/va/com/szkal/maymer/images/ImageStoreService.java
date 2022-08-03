@@ -15,6 +15,7 @@ import va.com.szkal.maymer.Env;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Service
@@ -26,6 +27,8 @@ public class ImageStoreService {
     private final RestTemplate restTemplate;
     private final RabbitTemplate rabbitTemplate;
     private final Env env;
+
+    private final ObjectMapper objectMapper;
 
     public static final long LINK_ID_EXPIRE_MINUTES = 5;
     private static final long LINK_ID_EXPIRE_SECONDS = 60 * LINK_ID_EXPIRE_MINUTES;
@@ -44,6 +47,7 @@ public class ImageStoreService {
         this.restTemplate = restTemplate;
         this.rabbitTemplate = rabbitTemplate;
         this.env = env;
+        this.objectMapper = new ObjectMapper();
     }
 
     public void updateChannelName(long channelId, String newName) {
@@ -73,11 +77,11 @@ public class ImageStoreService {
     }
 
     @SneakyThrows
-    public String generateLink(Guild server) {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public String generateLink(Guild server, Set<Long> channelIds) {
         AuthRequest authRequest = new AuthRequest();
         authRequest.setServerId(server.getIdLong());
         authRequest.setServerName(server.getName());
+        authRequest.setChannelIds(channelIds);
 
         byte[] bytes = new byte[64];
         secureRandom.nextBytes(bytes);
@@ -95,7 +99,6 @@ public class ImageStoreService {
 
     public String getImageJwt(String id) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             AuthRequest authRequest = objectMapper.readValue(client.get(id), AuthRequest.class);
             var url = env.getDscViewerUrl() + "/api/token";
             var response = restTemplate.postForEntity(url, authRequest, ImageTokenResponse.class);
