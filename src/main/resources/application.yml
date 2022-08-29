@@ -24,4 +24,5 @@ env:
   earwigSecretEmoteName: ${EARWIG_SECRET_EMOTE_NAME}
   messageDeletionTimeout: ${MESSAGE_DELETION_TIMEOUT:15}
   rabbitImageQueue: ${IMAGE_QUEUE_NAME}
+  rabbitMessageDeletedQueue: ${MESSAGE_DELETED_QUEUE_NAME}
   serverId: ${SERVER_ID}

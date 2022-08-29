@@ -32,5 +32,7 @@ public class Env {
 
     private String rabbitImageQueue;
 
+    private String rabbitMessageDeletedQueue;
+
     private long serverId;
 }

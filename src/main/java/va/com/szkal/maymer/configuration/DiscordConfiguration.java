@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -23,18 +24,19 @@ public class DiscordConfiguration {
     private final CommandService commandService;
     private final ImageStoreService imageStoreService;
     private final Env env;
-    private JDA jda;
 
+    private JDA jda;
 
     @EventListener(ContextRefreshedEvent.class)
     @SneakyThrows
     public void contextRefreshedEvent() {
-        jda = JDABuilder.createDefault(env.getBotToken()).build();
+        jda = JDABuilder.createDefault(env.getBotToken())
+                .enableIntents(GatewayIntent.GUILD_MEMBERS)
+                .build();
         jda.addEventListener(new MaymerListener(commandService),
                 new MaymerListenerEarwig(env),
                 new MaymerListenerWell(),
                 new MaymerImagesListener(imageStoreService));
-        jda.addEventListener();
         jda.getPresence().setActivity(env.isProd() ?
                 Activity.playing("Your mom") : Activity.watching("in development"));
     }

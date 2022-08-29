@@ -76,6 +76,14 @@ public class ImageStoreService {
         }
     }
 
+    public void deleteMessageImages(MessageDeletedRequest request) {
+        try {
+            rabbitTemplate.convertAndSend(env.getRabbitMessageDeletedQueue(), request);
+        } catch (Exception e) {
+            log.error("Message deleted", e);
+        }
+    }
+
     @SneakyThrows
     public String generateLink(Guild server, Set<Long> channelIds) {
         AuthRequest authRequest = new AuthRequest();

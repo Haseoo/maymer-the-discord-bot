@@ -5,8 +5,11 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.channel.text.TextChannelDeleteEvent;
 import net.dv8tion.jda.api.events.channel.text.update.TextChannelUpdateNameEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageDeleteEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 import va.com.szkal.maymer.images.ImageStoreService;
+import va.com.szkal.maymer.images.MessageDeletedRequest;
 import va.com.szkal.maymer.images.StoreImageRequest;
 
 import javax.annotation.Nonnull;
@@ -57,5 +60,11 @@ public class MaymerImagesListener extends ListenerAdapter {
     public void onTextChannelUpdateName(@Nonnull TextChannelUpdateNameEvent event) {
         super.onTextChannelUpdateName(event);
         imageStoreService.updateChannelName(event.getChannel().getIdLong(), event.getNewName());
+    }
+
+    @Override
+    public void onGuildMessageDelete(@NotNull GuildMessageDeleteEvent event) {
+        super.onGuildMessageDelete(event);
+        imageStoreService.deleteMessageImages(new MessageDeletedRequest(event.getMessageIdLong()));
     }
 }
